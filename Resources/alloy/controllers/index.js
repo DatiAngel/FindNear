@@ -55,8 +55,8 @@ function Controller() {
     });
     var locationCallback = function(e) {
         if (!e.success || e.error) return;
-        e.coords.longitude;
-        e.coords.latitude;
+        var longitude = e.coords.longitude;
+        var latitude = e.coords.latitude;
         e.coords.altitude;
         e.coords.heading;
         e.coords.accuracy;
@@ -66,14 +66,24 @@ function Controller() {
         setTimeout(function() {}, 100);
         var xhrLocationCode = Ti.Network.createHTTPClient();
         xhrLocationCode.setTimeout(12e4);
-        var url = "http://www.expoguayaquil.com/ws/";
+        var url = "https://api.foursquare.com/v2/venues/search?&client_id=Z31E0WEHAJPEOHJNZIG0F4KIPZUUZ2KL1MX4LABOPUMTATSA&client_secret=YLXHU52D5AGTRRPZ0VK0ZRMIIZAJ0MZSTOGGYE4LADQZ3FOO&v=20131016&ll=" + latitude;
+        url += "," + longitude + "&radius=80&limit=5";
         xhrLocationCode.onerror = function(e) {
-            Ti.API.debug(e.error);
+            Ti.API.debug("hola>" + e.error);
             alert("error2" + JSON.stringify(e.error));
         };
         xhrLocationCode.onload = function() {
             Ti.API.info("Received text: " + this.responseText);
-            alert("success1->" + JSON.stringify(this));
+            alert("success1->" + this.responseText);
+            var venues = JSON.parse(this.responseText).response.venues;
+            for (var i = 0; venues.length > i; i++) {
+                var objLocationAnnotation = Titanium.Map.createAnnotation({
+                    latitude: venues[i].location.lat,
+                    longitude: venues[i].location.lng,
+                    pincolor: Titanium.Map.ANNOTATION_GREEN
+                });
+                $.mapview.addAnnotation(objLocationAnnotation);
+            }
         };
         xhrLocationCode.open("GET", url);
         xhrLocationCode.setRequestHeader("Content-Type", "application/json; charset=utf-8");

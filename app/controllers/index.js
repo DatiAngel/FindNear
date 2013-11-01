@@ -57,12 +57,13 @@ var locationCallback = function(e)
 	//var requestUrl = "http://maps.google.com/maps/api/geocode/json?address=" + txtAddress.value.replace(' ', '+');
 	//requestUrl += "&sensor=" + (Ti.Geolocation.locationServicesEnabled == true);
 	var url = "https://api.foursquare.com/v2/venues/search?&client_id=Z31E0WEHAJPEOHJNZIG0F4KIPZUUZ2KL1MX4LABOPUMTATSA&client_secret=YLXHU52D5AGTRRPZ0VK0ZRMIIZAJ0MZSTOGGYE4LADQZ3FOO&v=20131016&ll="+ latitude;
-	url+= "," + longitude + "&radius=80";
+	url+= "," + longitude + "&radius=80&limit=5";
+	//var url="http://www.google.com";
 	
 	//If error occurs
 	xhrLocationCode.onerror = function(e) {
 		//TODO: code to handle error
-		Ti.API.debug(e.error);
+		Ti.API.debug("hola>"+e.error);
 	   	alert('error2'+JSON.stringify(e.error));
 	};
 	 
@@ -71,8 +72,11 @@ var locationCallback = function(e)
 	 
 		//Get the response
 		Ti.API.info("Received text: " + this.responseText);
-	    //alert('success1->'+JSON.stringify(this));
-	    var venues=this.responseText.response.venues;
+	    //alert('success1->'+this.responseText);
+	    /*for(var i=0;i<this.responseText.length;i+=20){
+	    	alert(this.responseText.substring(i,i+20));
+	    }*/
+	    var venues=JSON.parse(this.responseText).response.venues;
          for(var i=0;i<venues.length;i++){
          	//Define annotation to show location
 			var objLocationAnnotation = Titanium.Map.createAnnotation({
@@ -156,4 +160,4 @@ var locationCallback = function(e)
 };
 Titanium.Geolocation.addEventListener('location', locationCallback);
 
-//$.index.open();
+$.index.open();
