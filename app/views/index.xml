@@ -2,7 +2,7 @@
 	<Window class="container">
 		<!--<Label id="label" onClick="doClick">Hello, World</Label>-->
 		<!-- Note the ns attribute is used to change the default namespace. -->
-        <View id="mapview" ns="Ti.Map" onClick="doClick" onComplete="setRegion"
+        <View id="mapview" ns="Ti.Map"  
             animate="true" regionFit="true" userLocation="true"
             mapType="Ti.Map.STANDARD_TYPE" >
 
