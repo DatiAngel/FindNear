@@ -35,6 +35,25 @@ function Controller() {
     $.__views.index.add($.__views.mapview);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var longitude;
+    var latitude;
+    Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+    Titanium.Geolocation.distanceFilter = 10;
+    Titanium.Geolocation.getCurrentPosition(function(e) {
+        if (!e.success || e.error) {
+            alert("error " + JSON.stringify(e.error));
+            return;
+        }
+        longitude = e.coords.longitude;
+        latitude = e.coords.latitude;
+        e.coords.altitude;
+        e.coords.heading;
+        e.coords.accuracy;
+        e.coords.speed;
+        e.coords.timestamp;
+        e.coords.altitudeAccuracy;
+    });
+    alert(longitude);
     $.index.open();
     _.extend($, exports);
 }
