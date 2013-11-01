@@ -1,0 +1,13 @@
+REFERENCIAS
+SHOW MAP
+-http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Map
+ASYNC REQUEST
+-http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient
+FOURSQUARE API
+-https://developer.foursquare.com/start/search
+-https://developer.foursquare.com/overview/auth
+-https://foursquare.com/developers/app/Z31E0WEHAJPEOHJNZIG0F4KIPZUUZ2KL1MX4LABOPUMTATSA  <- NUESTRO APP EN FOURSQUARE
+GET CURRENT LOCATION PROGRAMTICALLY
+-http://developer.appcelerator.com/question/131339/i-want-to-find-out-my-current-location-using-titanium-gps
+SET PINS IN MAP PROGRAMATICALLY
+-http://www.mindfiresolutions.com/Show-location-on-map-from-address-using-Titanium-2350.php
