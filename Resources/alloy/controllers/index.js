@@ -53,7 +53,33 @@ function Controller() {
         e.coords.timestamp;
         e.coords.altitudeAccuracy;
     });
-    alert(longitude);
+    var locationCallback = function(e) {
+        if (!e.success || e.error) return;
+        e.coords.longitude;
+        e.coords.latitude;
+        e.coords.altitude;
+        e.coords.heading;
+        e.coords.accuracy;
+        e.coords.speed;
+        e.coords.timestamp;
+        e.coords.altitudeAccuracy;
+        setTimeout(function() {}, 100);
+        var xhrLocationCode = Ti.Network.createHTTPClient();
+        xhrLocationCode.setTimeout(12e4);
+        var url = "http://www.expoguayaquil.com/ws/";
+        xhrLocationCode.onerror = function(e) {
+            Ti.API.debug(e.error);
+            alert("error2" + JSON.stringify(e.error));
+        };
+        xhrLocationCode.onload = function() {
+            Ti.API.info("Received text: " + this.responseText);
+            alert("success1->" + JSON.stringify(this));
+        };
+        xhrLocationCode.open("GET", url);
+        xhrLocationCode.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        xhrLocationCode.send();
+    };
+    Titanium.Geolocation.addEventListener("location", locationCallback);
     $.index.open();
     _.extend($, exports);
 }
