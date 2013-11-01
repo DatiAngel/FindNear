@@ -71,7 +71,22 @@ var locationCallback = function(e)
 	 
 		//Get the response
 		Ti.API.info("Received text: " + this.responseText);
-	    alert('success1->'+JSON.stringify(this));
+	    //alert('success1->'+JSON.stringify(this));
+	    var venues=this.responseText.response.venues;
+         for(var i=0;i<venues.length;i++){
+         	//Define annotation to show location
+			var objLocationAnnotation = Titanium.Map.createAnnotation({
+				latitude: venues[i].location.lat,
+				longitude: venues[i].location.lng,
+				//title: txtAddress.value,
+				//subtitle: 'My Place',
+				//animate:true,
+				//id: 1,
+				pincolor: Titanium.Map.ANNOTATION_GREEN
+			});
+			
+         	$.mapview.addAnnotation(objLocationAnnotation);
+         }
 		/*var response = JSON.parse(this.responseText);
 		 
 		//Check the response
