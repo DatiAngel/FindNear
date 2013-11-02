@@ -6,12 +6,6 @@
             animate="true" regionFit="true" userLocation="true"
             mapType="Ti.Map.STANDARD_TYPE" >
 
-            <Annotation id="mountainView"
-              latitude="0" longitude="-82.081651"
-              title="Appcelerator Headquarters" subtitle="Mountain View, CA"
-              pincolor="Titanium.Map.ANNOTATION_RED"
-              leftButton="/images/appcelerator_small.png"
-              myid="1"/>
 
             <!-- Place other child views here, such as an ImageView to add an overlay. -->
 

@@ -58,14 +58,9 @@ var RESET = {
     transform: null,
     backgroundGradient: {},
     borderColor: "transparent",
-    borderRadius: 0,
-    borderWidth: 0
+    borderRadius: null,
+    borderWidth: null
 };
-
-RESET = _.extend(RESET, {
-    backgroundLeftCap: 0,
-    backgroundTopCap: 0
-});
 
 exports.M = function(name, modelDesc, migrations) {
     var config = (modelDesc || {}).config || {};
@@ -223,7 +218,7 @@ exports.createCollection = function(name, args) {
 };
 
 exports.isTablet = function() {
-    return "ipad" === Ti.Platform.osname;
+    return Math.min(Ti.Platform.displayCaps.platformHeight, Ti.Platform.displayCaps.platformWidth) >= 400;
 }();
 
 exports.isHandheld = !exports.isTablet;

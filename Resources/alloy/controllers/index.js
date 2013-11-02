@@ -74,7 +74,6 @@ function Controller() {
         };
         xhrLocationCode.onload = function() {
             Ti.API.info("Received text: " + this.responseText);
-            alert("success1->" + this.responseText);
             var venues = JSON.parse(this.responseText).response.venues;
             for (var i = 0; venues.length > i; i++) {
                 var objLocationAnnotation = Titanium.Map.createAnnotation({
